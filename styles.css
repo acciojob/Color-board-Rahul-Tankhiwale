@@ -1,41 +1,29 @@
-/*  your css code here. If applicable */
-/* Page base */
-* { box-sizing: border-box; }
+/* Basic page reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  margin: 0;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  background: #0f1115;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-/* The color board container (required class: container) */
-.container {
-  display: grid;
-  grid-template-columns: repeat(40, 22px); /* 40 x 20 = 800 squares */
-  gap: 6px;
-  padding: 24px;
-  background: #0b0d11;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35) inset, 0 8px 30px rgba(0,0,0,.25);
+/* container must exist for the Cypress selector */
+.container#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 800px; /* or whatever width you want */
+  gap: 4px;
 }
 
-/* Each square (required class: square) */
+/* each square used in tests */
 .square {
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-  background: #1b1f26;             /* base color */
-  border: 1px solid #0e1116;
-  transition:
-    background-color 1s ease,      /* smooth fade-back in 1s */
-    box-shadow 1s ease,
-    transform 120ms ease;          /* small tap/hover feedback */
+  width: 20px;
+  height: 20px;
+  background-color: #1d1d1d; /* rgb(29, 29, 29) — matches Cypress expectation */
+  transition: background-color 300ms ease, box-shadow 300ms ease;
+  border-radius: 3px;
+  /* optional: make them focusable for accessibility */
+  outline: none;
 }
-
-/* Optional micro feedback on pointer down */
-.square:active {
-  transform: scale(0.92);
-}
-
